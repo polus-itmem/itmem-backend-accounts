@@ -5,8 +5,20 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 
-class Template(Base):
-    __tablename__ = 'template'
+class Role(Enum):
+    user = 0
+    dispatcher = 1
+    driver = 2
 
-    id = Column(Integer, primary_key = True)
-    data = Column(Text, nullable = False)
+
+class User(Base):
+    __tablename__ = 'users'
+
+    user_id = Column(Integer, primary_key = True)
+    role = Column(Enum_s(Role), nullable = False)
+
+    login = Column(Text, unique = True, nullable = False)
+    password = Column(Text, nullable = False)
+
+    first_name = Column(Text)
+    second_name = Column(Text)

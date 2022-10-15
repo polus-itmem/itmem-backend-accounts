@@ -3,6 +3,6 @@ from fastapi import APIRouter
 from . import public
 
 
-router = APIRouter(prefix = '/template')
+router = APIRouter(prefix = '/accounts')
 
-router.include_router(public.router, prefix="/public")
+router.include_router(public.router)
