@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -36,3 +36,13 @@ class WebQueryController:
         if second_name:
             user.second_name = second_name
         await self._session.flush()
+
+    async def get_users(self, user_id: List[int]) -> List[User]:
+        users = (await self._session.execute(
+            select(User)
+            .where(User.user_id.in_(user_id))
+        )).all()
+        return [i[0] for i in users]
+
+    async def get_user(self, user_id: int) -> User:
+        return await self._session.get(User, user_id)

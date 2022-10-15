@@ -22,3 +22,4 @@ class User(Base):
 
     first_name = Column(Text)
     second_name = Column(Text)
+    number = Column(Text)

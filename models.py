@@ -6,6 +6,10 @@ from db.models import Role
 from pydantic import BaseModel
 
 
+class ModelId(BaseModel):
+    id: int
+
+
 class UserCredit(BaseModel):
     login: str
     password: str
@@ -17,3 +21,4 @@ class User(BaseModel):
     role: Role
     first_name: str
     second_name: str
+    number: str
